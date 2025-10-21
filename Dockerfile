@@ -1,33 +1,52 @@
-# Multi-stage build for optimized production image
-# Stage 1: Build the application
+# Node 20 kullan (Vite 7 için gerekli)
 FROM node:20-alpine AS builder
 
-# Set working directory
 WORKDIR /app
 
-# Copy package files
-COPY package.json package-lock.json ./
+# Package files kopyala
+COPY package*.json ./
 
-# Install all dependencies (including dev dependencies for build)
+# ÖNEMLİ: devDependencies'leri de yükle (tailwindcss, postcss için)
 RUN npm ci
 
-# Copy all source files
+# Tüm source code'u kopyala
 COPY . .
 
-# Build the application
+# Build
 RUN npm run build
 
-# Stage 2: Serve the application with nginx
+# Production image - Nginx ile serve et
 FROM nginx:alpine
 
-# Copy custom nginx config
-COPY nginx.conf /etc/nginx/nginx.conf
-
-# Copy built application from builder stage
+# Build output'u nginx'e kopyala
 COPY --from=builder /app/dist /usr/share/nginx/html
 
-# Expose port 80
+# Nginx config (SPA routing için)
+COPY <<'EOF' /etc/nginx/conf.d/default.conf
+server {
+    listen 80;
+    server_name _;
+    root /usr/share/nginx/html;
+    index index.html;
+
+    # SPA routing - tüm istekleri index.html'e yönlendir
+    location / {
+        try_files $uri $uri/ /index.html;
+    }
+
+    # Static assets cache
+    location ~* \.(js|css|png|jpg|jpeg|gif|ico|svg|woff|woff2|ttf|eot)$ {
+        expires 1y;
+        add_header Cache-Control "public, immutable";
+    }
+
+    # CORS headers (eğer API çağrıları varsa)
+    add_header X-Frame-Options "SAMEORIGIN" always;
+    add_header X-Content-Type-Options "nosniff" always;
+    add_header X-XSS-Protection "1; mode=block" always;
+}
+EOF
+
 EXPOSE 80
 
-# Start nginx
 CMD ["nginx", "-g", "daemon off;"]
