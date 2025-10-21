@@ -1,7 +1,7 @@
 const Divider = () => {
   return (
-    <div className="flex justify-center">
-      <div className="w-32 h-px bg-gradient-to-r from-transparent via-amber-500 to-transparent" />
+    <div className="flex justify-center mt-8">
+      <div className="w-48 h-px bg-gradient-to-r from-transparent via-amber-800/30 to-transparent" />
     </div>
   )
 }

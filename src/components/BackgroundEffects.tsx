@@ -1,67 +1,64 @@
 const BackgroundEffects = () => {
   return (
     <div className="absolute inset-0">
-      {/* Katmanlı ışık efektleri */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[1000px] bg-gradient-radial from-amber-500/25 via-orange-500/15 to-transparent blur-3xl animate-pulse-glow" />
-      <div className="absolute top-1/3 left-1/3 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-radial from-orange-400/20 to-transparent blur-2xl animate-pulse-glow-delayed-1" />
-      <div className="absolute bottom-1/3 right-1/3 translate-x-1/2 translate-y-1/2 w-[500px] h-[500px] bg-gradient-radial from-amber-600/15 to-transparent blur-2xl animate-pulse-glow-delayed-2" />
-
-      {/* Grid pattern */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808018_1px,transparent_1px),linear-gradient(to_bottom,#80808018_1px,transparent_1px)] bg-[size:64px_64px]" />
-
-      {/* Işık noktaları */}
-      <div className="absolute top-1/4 left-1/4 w-2 h-2 rounded-full bg-amber-400/40 blur-sm animate-pulse" />
-      <div className="absolute top-2/3 left-1/5 w-1.5 h-1.5 rounded-full bg-orange-400/30 blur-sm animate-pulse-delayed-0.5" />
-      <div className="absolute top-1/3 right-1/4 w-2 h-2 rounded-full bg-amber-300/35 blur-sm animate-pulse-delayed-1.5" />
-      <div className="absolute bottom-1/4 right-1/3 w-1.5 h-1.5 rounded-full bg-orange-300/30 blur-sm animate-pulse-delayed-2.5" />
-
-      {/* Osmanlı tezhip çizgileri */}
-      <svg className="absolute inset-0 w-full h-full opacity-20" xmlns="http://www.w3.org/2000/svg">
+      {/* Osmanlı mürekkep ve hat sanatı hissi veren zarif çerçeve */}
+      <svg className="absolute inset-0 w-full h-full opacity-10" xmlns="http://www.w3.org/2000/svg">
         <defs>
-          <linearGradient id="tezhipGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#f59e0b" stopOpacity="0.8" />
-            <stop offset="50%" stopColor="#d97706" stopOpacity="1" />
-            <stop offset="100%" stopColor="#f59e0b" stopOpacity="0.8" />
+          <linearGradient id="inkGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#78350f" stopOpacity="0.3" />
+            <stop offset="50%" stopColor="#92400e" stopOpacity="0.5" />
+            <stop offset="100%" stopColor="#78350f" stopOpacity="0.3" />
           </linearGradient>
-          <filter id="glow">
-            <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
-            <feMerge>
-              <feMergeNode in="coloredBlur"/>
-              <feMergeNode in="SourceGraphic"/>
-            </feMerge>
-          </filter>
         </defs>
 
-        {/* Üst süsleme */}
-        <path d="M 0,100 Q 200,50 400,100 T 800,100 T 1200,100 T 1600,100 T 2000,100"
-              stroke="url(#tezhipGrad)" strokeWidth="2" fill="none" opacity="0.5" filter="url(#glow)" />
-        <path d="M 0,120 Q 200,90 400,120 T 800,120 T 1200,120 T 1600,120 T 2000,120"
-              stroke="url(#tezhipGrad)" strokeWidth="1" fill="none" opacity="0.3" />
+        {/* Üst ve alt zarif süsleme çizgileri */}
+        <line x1="10%" y1="10%" x2="90%" y2="10%" stroke="url(#inkGradient)" strokeWidth="0.5" />
+        <line x1="15%" y1="12%" x2="85%" y2="12%" stroke="url(#inkGradient)" strokeWidth="0.3" />
 
-        {/* Alt süsleme */}
-        <path d="M 0,900 Q 200,950 400,900 T 800,900 T 1200,900 T 1600,900 T 2000,900"
-              stroke="url(#tezhipGrad)" strokeWidth="2" fill="none" opacity="0.5" filter="url(#glow)" />
-        <path d="M 0,880 Q 200,910 400,880 T 800,880 T 1200,880 T 1600,880 T 2000,880"
-              stroke="url(#tezhipGrad)" strokeWidth="1" fill="none" opacity="0.3" />
+        <line x1="10%" y1="90%" x2="90%" y2="90%" stroke="url(#inkGradient)" strokeWidth="0.5" />
+        <line x1="15%" y1="88%" x2="85%" y2="88%" stroke="url(#inkGradient)" strokeWidth="0.3" />
 
-        {/* Sol motif */}
-        <circle cx="100" cy="500" r="150" stroke="url(#tezhipGrad)" strokeWidth="1.5" fill="none" opacity="0.3" />
-        <circle cx="100" cy="500" r="120" stroke="url(#tezhipGrad)" strokeWidth="1" fill="none" opacity="0.25" />
-        <circle cx="100" cy="500" r="90" stroke="url(#tezhipGrad)" strokeWidth="0.5" fill="none" opacity="0.2" />
-        <path d="M 100,500 L 100,350" stroke="url(#tezhipGrad)" strokeWidth="0.5" opacity="0.2" />
-        <path d="M 100,500 L 100,650" stroke="url(#tezhipGrad)" strokeWidth="0.5" opacity="0.2" />
-        <path d="M 100,500 L 250,500" stroke="url(#tezhipGrad)" strokeWidth="0.5" opacity="0.2" />
-        <path d="M 100,500 L -50,500" stroke="url(#tezhipGrad)" strokeWidth="0.5" opacity="0.2" />
+        {/* Sol ve sağ kenar süslemeleri */}
+        <circle cx="5%" cy="50%" r="80" stroke="url(#inkGradient)" strokeWidth="0.5" fill="none" opacity="0.3" />
+        <circle cx="5%" cy="50%" r="60" stroke="url(#inkGradient)" strokeWidth="0.3" fill="none" opacity="0.2" />
 
-        {/* Sağ motif */}
-        <circle cx="1820" cy="500" r="150" stroke="url(#tezhipGrad)" strokeWidth="1.5" fill="none" opacity="0.3" />
-        <circle cx="1820" cy="500" r="120" stroke="url(#tezhipGrad)" strokeWidth="1" fill="none" opacity="0.25" />
-        <circle cx="1820" cy="500" r="90" stroke="url(#tezhipGrad)" strokeWidth="0.5" fill="none" opacity="0.2" />
-        <path d="M 1820,500 L 1820,350" stroke="url(#tezhipGrad)" strokeWidth="0.5" opacity="0.2" />
-        <path d="M 1820,500 L 1820,650" stroke="url(#tezhipGrad)" strokeWidth="0.5" opacity="0.2" />
-        <path d="M 1820,500 L 1970,500" stroke="url(#tezhipGrad)" strokeWidth="0.5" opacity="0.2" />
-        <path d="M 1820,500 L 1670,500" stroke="url(#tezhipGrad)" strokeWidth="0.5" opacity="0.2" />
+        <circle cx="95%" cy="50%" r="80" stroke="url(#inkGradient)" strokeWidth="0.5" fill="none" opacity="0.3" />
+        <circle cx="95%" cy="50%" r="60" stroke="url(#inkGradient)" strokeWidth="0.3" fill="none" opacity="0.2" />
+
+        {/* Köşe süslemeleri - klasik kitap köşe desenleri */}
+        <g opacity="0.4">
+          {/* Sol üst köşe */}
+          <path d="M 50,50 L 50,100 L 100,50 Z" stroke="url(#inkGradient)" strokeWidth="0.5" fill="none" />
+          <circle cx="75" cy="75" r="10" stroke="url(#inkGradient)" strokeWidth="0.3" fill="none" />
+
+          {/* Sağ üst köşe */}
+          <path d="M 1870,50 L 1870,100 L 1820,50 Z" stroke="url(#inkGradient)" strokeWidth="0.5" fill="none" />
+          <circle cx="1845" cy="75" r="10" stroke="url(#inkGradient)" strokeWidth="0.3" fill="none" />
+
+          {/* Sol alt köşe */}
+          <path d="M 50,1030 L 50,980 L 100,1030 Z" stroke="url(#inkGradient)" strokeWidth="0.5" fill="none" />
+          <circle cx="75" cy="1005" r="10" stroke="url(#inkGradient)" strokeWidth="0.3" fill="none" />
+
+          {/* Sağ alt köşe */}
+          <path d="M 1870,1030 L 1870,980 L 1820,1030 Z" stroke="url(#inkGradient)" strokeWidth="0.5" fill="none" />
+          <circle cx="1845" cy="1005" r="10" stroke="url(#inkGradient)" strokeWidth="0.3" fill="none" />
+        </g>
       </svg>
+
+      {/* Eski kitap sayfası kırışıklık efekti */}
+      <div
+        className="absolute inset-0 opacity-[0.02]"
+        style={{
+          backgroundImage: `
+            radial-gradient(circle at 20% 30%, transparent 40%, #92400e03 50%, transparent 60%),
+            radial-gradient(circle at 80% 70%, transparent 40%, #78350f03 50%, transparent 60%),
+            radial-gradient(circle at 60% 20%, transparent 35%, #92400e02 45%, transparent 55%)
+          `
+        }}
+      />
+
+      {/* Minimal ışık vurgusu - okuma lambası hissi */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-radial from-yellow-50/20 via-transparent to-transparent rounded-full blur-3xl" />
     </div>
   )
 }
